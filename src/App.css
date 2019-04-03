@@ -1,0 +1,40 @@
+/* table {
+    width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+tbody {
+    height: 120px;
+    overflow-y: auto;
+} */
+
+table {
+    width: 100%;
+}
+thead, tbody, tr, td, th {
+    display: block;
+}
+
+tr:after{
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+td, th{
+    width: 50%;
+    float: left;
+}
+
+tbody {
+    height: 40vh;
+    overflow-y: scroll;
+}
