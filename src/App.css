@@ -35,6 +35,37 @@ td, th{
 }
 
 tbody {
-    height: 40vh;
+    max-height: 40vh;
     overflow-y: scroll;
+}
+
+button{
+    border-radius: 0 !important;
+}
+
+button:last-of-type{
+    border-bottom-left-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

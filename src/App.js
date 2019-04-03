@@ -92,58 +92,56 @@ class App extends Component {
     }
 
 
-  render() {
-      let { buttonText, buttonClass, laps } = this.state;
-      let button;
-      if( (this.state.timerOn === false) && (this.state.timerDuration > 0) ){
-          button = <button className="btn btn-danger" onClick={this.resetWatch}>Reset Stop Watch</button>;
-      } else if(this.state.timerOn === true){
-          button = <button className="btn btn-info" onClick={this.lap}>Lap</button>;
-      }
+    render() {
+        let { buttonText, buttonClass, laps } = this.state;
+        let button;
+        if( (this.state.timerOn === false) && (this.state.timerDuration > 0) ){
+            button = <button className="btn btn-danger" onClick={this.resetWatch}>Reset Stop Watch</button>;
+        } else if(this.state.timerOn === true){
+            button = <button className="btn btn-info" onClick={this.lap}>Lap</button>;
+        }
 
-
-    return (
-      <div className="d-flex align-items-top h-100 bg-dark pt-5">
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-8">
-                    <div className="card text-center">
-                        <h1 className="display-4">Stop Watch</h1>
-                        <h2 className="display-2">{this.state.time['minutes']}:{this.state.time['seconds']}</h2>
-                        <button className={buttonClass} onClick={this.toggleTimer} >{buttonText}</button>
-                        {button}
+        return (
+            <div className="d-flex align-items-top h-100 bg-dark pt-5">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-8">
+                            <div className="card text-center">
+                                <h1 className="display-4">Stop Watch</h1>
+                                <h2 className="display-2">{this.state.time['minutes']}:{this.state.time['seconds']}</h2>
+                                <button className={buttonClass} onClick={this.toggleTimer} >{buttonText}</button>
+                                {button}
+                            </div>
+                        </div>
                     </div>
+                    {laps.length ? (
+                        <div className="row justify-content-center">
+                            <div className="col-8">
+                                <table id="lapTable" className="table table-striped table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Lap</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="border-bottom">
+                                        {
+                                            this.state.laps.reverse().map(lap => {
+                                                return <tr key={lap.id}>
+                                                    <td>{lap.id}</td>
+                                                    <td>{lap.time}</td>
+                                                </tr>
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    ):null}
                 </div>
             </div>
-            {laps.length ? (
-                <div className="row justify-content-center">
-                    <div className="col-8">
-                        <table id="lapTable" className="table table-striped table-dark">
-                            <thead>
-                                <tr>
-                                    <th>Lap</th>
-                                    <th>Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.state.laps.map(lap => {
-                                        return <tr key={lap.id}>
-                                                <td>{lap.id}</td>
-                                                <td>{lap.time}</td>
-                                            </tr>
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            ):null}
-
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default App;
