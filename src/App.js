@@ -15,6 +15,7 @@ class App extends Component {
                 minutes: '0'
             },
             secondOffset: 0,
+            minutesOffset: 0,
             laps: []
         }
         this.toggleTimer = this.toggleTimer.bind(this);
@@ -49,12 +50,15 @@ class App extends Component {
         var percentage = (newSeconds/60) * 100
         if(newSeconds === '60'){
             var currentMin = parseFloat(this.state.time['minutes']);
+            var newMin = currentMin + 1;
+            var minutesPercentage = (newMin/60) * 100
             this.setState(prevState => ({
                 time: {
                     seconds: '00',
-                    minutes: currentMin + 1
+                    minutes: newMin
                 },
-                secondOffset: percentage
+                secondOffset: percentage,
+                minutesOffset: minutesPercentage
             }))
         } else {
             this.setState(prevState => ({
@@ -92,7 +96,8 @@ class App extends Component {
                 minutes: '0'
             },
             laps: [],
-            secondOffset: 0
+            secondOffset: 0,
+            minutesOffset: 0
         })
     }
 
@@ -104,8 +109,11 @@ class App extends Component {
         } else if(this.state.timerOn === true){
             button = <button className="btn btn-lap" onClick={this.lap}>Lap</button>;
         }
-        const style = {
+        const secondsStyle = {
           strokeDashoffset: 'calc(314.1592% * ('+this.state.secondOffset+' / 100))'
+        }
+        const minutesStyle = {
+          strokeDashoffset: 'calc(314.1592% * ('+this.state.minutesOffset+' / 100))'
         }
         return (
             <div id="App">
@@ -119,7 +127,19 @@ class App extends Component {
                                     r="50%"
                                     cx="50%"
                                     cy="50%"
-                                    style={style}
+                                    style={secondsStyle}
+                                    ></circle>
+                            </svg>
+                        </div>
+                        <div className="minutesRadial" data-percentage="75">
+                            <svg viewport="0 0 2000 2000">
+                                <circle className="bars" r="50%" cx="50%" cy="50%"></circle>
+                                <circle
+                                    className="bars"
+                                    r="50%"
+                                    cx="50%"
+                                    cy="50%"
+                                    style={minutesStyle}
                                     ></circle>
                             </svg>
                         </div>

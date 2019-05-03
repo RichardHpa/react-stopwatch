@@ -1,5 +1,5 @@
-$secondsWidth: 250px;
-$minutesWidth: 300px;
+$secondsWidth: 220px;
+$minutesWidth: 250px;
 
 #App{
     background-color: #34495e;
@@ -22,16 +22,19 @@ $minutesWidth: 300px;
             position: relative;
             justify-content: center;
             align-items: center;
+            height: 250px;
             .time{
                 position: absolute;
                 font-size: 4rem;
                 font-weight: 300;
                 line-height: 1.2;
+                color: white;
             }
             .secondsRadial {
-                height: 250px;
-                position: relative;
-                width: 250px;
+                height: $secondsWidth;
+                position: absolute;
+                width: $secondsWidth;
+                z-index: 100;
                 svg{
                     border-radius: 50%;
                     height: 100%;
@@ -46,6 +49,29 @@ $minutesWidth: 300px;
                         }
                         &:nth-child(2){
                             stroke: #bdc3c7;
+                            stroke-dasharray: 314.1592%;
+                        }
+                    }
+                }
+            }
+            .minutesRadial{
+                height: $minutesWidth;
+                position: absolute;
+                width: $minutesWidth;
+                svg{
+                    border-radius: 50%;
+                    height: 100%;
+                    -webkit-transform: scaleX(-1) rotate(-90deg);
+                            transform: scaleX(-1) rotate(-90deg);
+                    width: 100%;
+                    .bars{
+                        fill: none;
+                        stroke-width: 2em;
+                        &:nth-child(1){
+                            stroke: #e74c3c;
+                        }
+                        &:nth-child(2){
+                            stroke: #ecf0f1;
                             stroke-dasharray: 314.1592%;
                         }
                     }
